@@ -2,10 +2,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibXNwYXJrczcxNCIsImEiOiJjazZsZjl0aXAwYmMzM21uM
 
 // we want to return to this point and zoom level after the user interacts
 // with the map, so store them in variables
-var initialCenterPoint = [-73.879478, 40.867870]
-var initialZoom = 10.67
+var initialCenterPoint = [-73.9600338572175, 40.683099860943685]
+var initialZoom = 10.1
 
-var defaultText = '<p>Move the mouse over the map to get more info on a property</p>'
+var defaultText = '<p> Click on a location for more information on hours, digital ordering, and contact information. </p> <p>Our partner pantries serve food insufficient clients regardless of their race, faith, ethnicity, sexual identity, or gender.</p>'
 $('#feature-info').html(defaultText)
 
 // create an object to hold the initialization options for a mapboxGL map
