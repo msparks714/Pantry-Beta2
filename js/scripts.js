@@ -22,32 +22,33 @@ var map = new mapboxgl.Map(initOptions);
 // add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
+
 // wait for the initial style to Load
 map.on('style.load', function() {
   //add a layer for your custom source//
-  map.addSource('Bronxparks', {
+  map.addSource('NTA', {
     type:'geojson',
-    data:'data/Bronxparks.geojson',
+    data:'data/NTA.geojson',
   });
-
 
   // let's make sure the source got added by logging the current map state to the console
   console.log(map.getStyle().sources)
+
 
   // add a layer for our custom source
   // Have to include the `stops` key and you can't use the value `null` as one of the stops. Need to use all one type of
   // value, in this case strings.
   map.addLayer({
-    id: 'fill-Bronxparks',
+    id: 'fill-NTA',
     type: 'fill',
-    source: 'Bronxparks',
+    source: 'NTA',
     paint: {
       'fill-color': {
         type: 'categorical',
-        property: 'LandUse',
+        property: 'ntacode',
         stops: [
-          ["Playground", "#f00"],
-          ["Jointly Operated Playground", "#0f0"],
+          ["ntacode", "#f00"],
+          ["ntaname", "#0f0"],
           ["Neighborhood Park", "#00f"]
         ]
       }
@@ -75,12 +76,23 @@ map.on('style.load', function() {
     }
   });
 
+ //iterate over each object in data
+// partnerData.forEach(function(manuelEntry){
+//     //for each object in the data, add a marker to the map with a popup
+//     new mapboxgl.Marker()
+//       .setLngLat([manuelEntry.longitude, manuelEntry.latitude])
+//       .setPopup(new mapboxgl.Popup({ offset: 25})//add popups
+//         .set HTML '${manuelEntry.name}' </a>
+//       )
+//   .addTo(map);
+//   })
+
   // listen for the mouse moving over the map and react when the cursor is over our data
 
   map.on('mousemove', function (e) {
     // query for the features under the mouse, but only in the lots layer
     var features = map.queryRenderedFeatures(e.point, {
-        layers: ['fill-Bronxparks'],
+        layers: ['fill-NTA'],
     });
 
     // if the mouse pointer is over a feature on our layer of interest
@@ -90,9 +102,9 @@ map.on('style.load', function() {
 
       var hoveredFeature = features[0]
       var featureInfo = `
-        <p><strong> Park Name :</strong> ${hoveredFeature.properties.park_name}</p>
-        <p><strong> Total Area in Sqft:</strong> ${hoveredFeature.properties.shape_area}</p>
-        <p><strong> Type of Area:</strong> ${hoveredFeature.properties.landuse}</p>
+        <p><strong> NTA code :</strong> ${hoveredFeature.properties.ntacode}</p>
+        <p><strong> Neighborhood:</strong> ${hoveredFeature.properties.ntaname}</p>
+        <p><strong> Borough:</strong> ${hoveredFeature.properties.boro_name}</p>
       `
       $('#feature-info').html(featureInfo)
 
