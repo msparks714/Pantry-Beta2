@@ -14,11 +14,75 @@
 
     <!--sidebar nugget -->
    <div id='sidebar'>
-          <h1> MET Council Partner Pantries </h1>
-          <p>       </p>
-
+          <h3 id="title"> MET Council Partner Pantries </h3>
           <div id='feature-info'>
           </div>
+
+          <!-- Buttons to toggle between display of different data on map.
+    The buttons are wrapped in containers for centering within the sidebar. -->
+    <div id="buttons-container">
+      <button type="button" class="btn btn-info" id="buttonAll">Kosher Need</button>
+      <button type="button" class="btn btn-info" id="buttonLocal">Halal Need</button>
+      <button type="button" class="btn btn-info" id="buttonVisitor">Kosher and Halal Need</button>
+    </div>
+
+    <div id="buttons-container">
+    <button type="button" class="btn btn-primary" id="buttonTypology">SNAP Recipients</button>
+  </div>
+
+  <!-- tabs for content in sidebar -->
+  <!-- code for tabs from https://getbootstrap.com/docs/4.3/components/navs/ -->
+
+  <nav>
+      <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-home" aria-selected="true"> <i class="fas fa-info-circle"></i> About</a>
+        <a class="nav-item nav-link" id="nav-methods-tab" data-toggle="tab" href="#nav-methods" role="tab" aria-controls="nav-profile" aria-selected="false"> <i class="fas fa-search"></i> Methodology</a>
+        <a class="nav-item nav-link" id="nav-legend-tab" data-toggle="tab" href="#nav-legend" role="tab" aria-controls="nav-contact" aria-selected="false"> <i class="fas fa-layer-group"></i> Legend</a>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+         <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+           <h5 class="heading">Welcome!</h5>
+           <p>This map was created as a resource for MET Council to look at the scale of their partner pantry program, where there are
+              meal gaps within the five boroughs, and how best we can scale and serve the NYC community, specifically folks who request
+              kosher/halal meals.
+             <b> Click on one of the above buttons to toggle the information displayed on the map. </b>
+             Once data is displayed, click on a census tract to view more information about the tract.</p>
+
+             <h5 class="heading">Data</h5>
+             <p>Click on the Methodology tab to view more information on how the data was collected and
+               calculated. Locations with higher proportion of tweets from visitors rather than local residents
+               are expected to be correlated with higher levels of gentrification and displacement, although
+               the accuracy of that is in the process of being studied!</p>
+
+               <h5 class="heading">Urban Displacement Project</h5>
+               <p>All data was collected and provided by the project sponsor, the
+                 <a href="https://www.urbandisplacement.org/">Urban Displacement Project (UDP)</a> at UC Berkeley.
+                 The UDP is a research initiative that aims to understand the processes of gentrification and
+                 displacement, and their goal is to "produce rigorous research and create tools to empower advocates
+                 and policymakers, to reframe conversations, and to train and inspire the next generation of leaders
+                 in equitable development."</p>
+               </div>
+
+               <div class="tab-pane fade" id="nav-methods" role="tabpanel" aria-labelledby="nav-methods-tab">
+                 <h5 class="heading"> <i class="fas fa-city"></i> Data Sources </h5>
+                 <p> The data used to showcase level of SNAP recipents and areas with AMIs defined to be below poverty level where
+                   taken from the American Community Survey Census data for 2019. The call data for the GetFood program in NYC was
+                   compiled by the Mayor's Office through 311 calls.</p>
+
+                   <h5 class="heading"><i class="fas fa-phone-square"></i> GetFood Data</h5>
+                   <p> 311 GetFood Data for projcet was sourced by the Mayor's Office through 311 calls is representative of
+                     food box deliveries since January 2021 until present.
+                    </br> </br>
+                   </p>
+                 </div>
+
+                 <div class="tab-pane fade" id="nav-legend" role="tabpanel" aria-labelledby="nav-legend-tab">
+                   <div class="legend load-legend">
+                     <p style="font-size: 12pt">Click on one of the buttons above to display some data! </p>
+
+                   </div>
 
       </div>
       <!-- this is the map container-->
@@ -26,9 +90,7 @@
 
 <!-- Load mapboxGL, jQuery, then our local javascript files-->
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
-
-
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+ <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
               <script
                 src="https://code.jquery.com/jquery-3.4.1.min.js"
                 integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

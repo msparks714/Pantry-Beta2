@@ -28,6 +28,14 @@ h2 {
   cursor: pointer;
 }
 
+.mapboxgl-popup {
+  max-width: 220px;
+  max-height: 2px;
+  font: 10px/10px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  padding: 1px 1px 1px;
+  position: relative;
+}
+
 /* blue buttons with white bold text */
 .flyto-button {
   background: #0084aa;
@@ -46,14 +54,14 @@ button:hover {
   background-color: #006987;
 }
 
-#feature-info {
+/* #feature-info {
   background: #FDDC5F;
   padding: 10px;
   min-height: 150px;
   width: 200px;
   position: absolute;
   margin-right: -5px;
-}
+} */
 
 /* sidebar is fixed with and positioned to the left */
 #sidebar {
@@ -61,8 +69,10 @@ button:hover {
   text-align: left;
   width: 300px;
   height: 1000px;
-  background-image: url(https://i.pinimg.com/736x/07/d2/6b/07d26b483d444137fa6c33c0075f4c0b.jpg);
   color: #252525;
   padding: 25px;
   box-sizing: border-box;
+
+}
+  pk.eyJ1IjoibXNwYXJrczcxNCIsImEiOiJjazZsZjl0aXAwYmMzM21uMHpmNjcxMzFoIn0.yMKMcXRxt0QzELn7THF_8g
 }
