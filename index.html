@@ -5,16 +5,24 @@
   <head>
     <meta charset="utf-8">
     <title>The HTML5 Herald</title>
-    <meta name="description" content="MET Council Partner Pantries" />
+    <meta name="description" content="Food Insecurity in NYC" />
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css' rel='stylesheet'/>
     <link href='css/styles.css' rel='stylesheet'/>
   </head>
+
+
+    <!-- import styles for MapBoxGL, Bootstrap, FontAwesome, Google Fonts -->
+      <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+      <link rel="stylesheet" href="css/styles.css">
+    </head>
   <body>
 
     <!--sidebar nugget -->
    <div id='sidebar'>
-          <h3 id="title"> MET Council Partner Pantries </h3>
+          <h3 id="title"> Food Insecurity in NYC </h3>
           <div id='feature-info'>
           </div>
 
@@ -48,55 +56,84 @@
               meal gaps within the five boroughs, and how best we can scale and serve the NYC community, specifically folks who request
               kosher/halal meals.
              <b> Click on one of the above buttons to toggle the information displayed on the map. </b>
-             Once data is displayed, click on a census tract to view more information about the tract.</p>
+             Once data is displayed, click on a neighborhood tabulation area (NTA) to view more information about that NTA.</p>
 
              <h5 class="heading">Data</h5>
              <p>Click on the Methodology tab to view more information on how the data was collected and
-               calculated. Locations with higher proportion of tweets from visitors rather than local residents
-               are expected to be correlated with higher levels of gentrification and displacement, although
-               the accuracy of that is in the process of being studied!</p>
+               calculated. We are using the data to see where locations with higher proportion of kosher and halal requests
+             are in order to expand our partner network in these areas.</p>
+          </div>
 
-               <h5 class="heading">Urban Displacement Project</h5>
-               <p>All data was collected and provided by the project sponsor, the
-                 <a href="https://www.urbandisplacement.org/">Urban Displacement Project (UDP)</a> at UC Berkeley.
-                 The UDP is a research initiative that aims to understand the processes of gentrification and
-                 displacement, and their goal is to "produce rigorous research and create tools to empower advocates
-                 and policymakers, to reframe conversations, and to train and inspire the next generation of leaders
-                 in equitable development."</p>
-               </div>
-
-               <div class="tab-pane fade" id="nav-methods" role="tabpanel" aria-labelledby="nav-methods-tab">
-                 <h5 class="heading"> <i class="fas fa-city"></i> Data Sources </h5>
+          <div class="tab-pane fade" id="nav-methods" role="tabpanel" aria-labelledby="nav-methods-tab">
+                 <h5 class="heading"> <i class="fas fa-city"></i> Data </h5>
                  <p> The data used to showcase level of SNAP recipents and areas with AMIs defined to be below poverty level where
                    taken from the American Community Survey Census data for 2019. The call data for the GetFood program in NYC was
                    compiled by the Mayor's Office through 311 calls.</p>
 
-                   <h5 class="heading"><i class="fas fa-phone-square"></i> GetFood Data</h5>
-                   <p> 311 GetFood Data for projcet was sourced by the Mayor's Office through 311 calls is representative of
+                 <h5 class="heading"><i class="fas fa-phone-square"></i> Data Sources</h5>
+                 <p> 311 GetFood Data for projcet was sourced by the Mayor's Office through 311 calls is representative of
                      food box deliveries since January 2021 until present.
-                    </br> </br>
-                   </p>
-                 </div>
 
-                 <div class="tab-pane fade" id="nav-legend" role="tabpanel" aria-labelledby="nav-legend-tab">
-                   <div class="legend load-legend">
+                   </p>
+         </div>
+
+         <div class="tab-pane fade" id="nav-legend" role="tabpanel" aria-labelledby="nav-legend-tab">
+           <div class="legend load-legend">
                      <p style="font-size: 12pt">Click on one of the buttons above to display some data! </p>
 
                    </div>
+                   <!-- content of legend is programatically created in "functions.js"
+                                   All legends have two classes, the overarching "legend" class and an additional class
+                                   identifying the corresponding which dataset the legend belongs to -->
+                                   <div class="legend kosherneed-legend">
+                                     <h6>Count of all tweets (summed from 2012-2015)</h6>
+                                   </div>
+
+                                   <div class="legend halalneed-legend">
+                                     <h6>Percentage of Visitor Tweets (2012-2015)</h6>
+                                   </div>
+
+                                   <div class="legend kosherandhalalneed-legend">
+                                     <h6>Percentage of Local Tweets (2012-2015)</h6>
+                                   </div>
+
+                                   <div class="legend snaprecipients-legend">
+                                     <h6>Percentage of Local Tweets (2012-2015)</h6>
+                                   </div>
+
+                                   <div class="legend typology-legend">
+
+                                   </div>
+
+                                 </div>
+                               </div>
+                             </div>
 
       </div>
       <!-- this is the map container-->
               <div id='map-container'></div>
 
-<!-- Load mapboxGL, jQuery, then our local javascript files-->
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
- <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
-              <script
-                src="https://code.jquery.com/jquery-3.4.1.min.js"
-                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-                crossorigin="anonymous"></script>
-              <script src='js/data.js'></script>
-              <script src='js/scripts.js'></script>
 
-            </body>
-          </html>
+<!--new stuff-->
+  <title>Update a choropleth layer by zoom level</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+
+  
+
+<!-- Load mapboxGL, jQuery, then our local javascript files-->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+       <!-- <script src="js/functions.js"></script> -->
+       <script src='js/data.js'></script>
+       <script src="js/scripts.js"></script>
+     </body>
+
+
+</html>
